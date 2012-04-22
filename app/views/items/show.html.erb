@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Wishlist:</b>
+  <%= @item.wishlist %>
+</p>
+
+<p>
+  <b>Movie:</b>
+  <%= @item.movie %>
+</p>
+
+<p>
+  <b>Owned:</b>
+  <%= @item.owned %>
+</p>
+
+<p>
+  <b>Owned on:</b>
+  <%= @item.owned_on %>
+</p>
+
+<p>
+  <b>Sort order:</b>
+  <%= @item.sort_order %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

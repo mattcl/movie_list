@@ -1,0 +1,31 @@
+<h1>Listing items</h1>
+
+<table>
+  <tr>
+    <th>Wishlist</th>
+    <th>Movie</th>
+    <th>Owned</th>
+    <th>Owned on</th>
+    <th>Sort order</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @items.each do |item| %>
+  <tr>
+    <td><%= item.wishlist %></td>
+    <td><%= item.movie %></td>
+    <td><%= item.owned %></td>
+    <td><%= item.owned_on %></td>
+    <td><%= item.sort_order %></td>
+    <td><%= link_to 'Show', item %></td>
+    <td><%= link_to 'Edit', edit_item_path(item) %></td>
+    <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Item', new_item_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422203118) do
+ActiveRecord::Schema.define(:version => 20120422225101) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,6 +46,41 @@ ActiveRecord::Schema.define(:version => 20120422203118) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "genres", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "genres_movies", :id => false, :force => true do |t|
+    t.integer "genre_id"
+    t.integer "movie_id"
+  end
+
+  add_index "genres_movies", ["genre_id", "movie_id"], :name => "index_genres_movies_on_genre_id_and_movie_id"
+  add_index "genres_movies", ["movie_id", "genre_id"], :name => "index_genres_movies_on_movie_id_and_genre_id"
+
+  create_table "items", :force => true do |t|
+    t.integer  "wishlist_id"
+    t.integer  "movie_id"
+    t.boolean  "owned"
+    t.datetime "owned_on"
+    t.integer  "sort_order"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "items", ["movie_id"], :name => "index_items_on_movie_id"
+  add_index "items", ["wishlist_id"], :name => "index_items_on_wishlist_id"
+
+  create_table "movies", :force => true do |t|
+    t.string   "imdb_ref"
+    t.string   "title"
+    t.string   "year"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -63,5 +98,14 @@ ActiveRecord::Schema.define(:version => 20120422203118) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "wishlists", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "public"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
 end

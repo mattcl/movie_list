@@ -1,4 +1,12 @@
 MovieList::Application.routes.draw do
+  resources :genres
+
+  resources :movies
+
+  resources :items
+
+  resources :wishlists
+
   devise_for :users
 
   ActiveAdmin.routes(self)
