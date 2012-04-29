@@ -1,5 +1,5 @@
 class Wishlist < ActiveRecord::Base
-  attr_accessible :description, :public, :references, :title
+  attr_accessible :description, :public, :items, :movies, :title
 
   belongs_to :user
   has_many :items
